@@ -15,7 +15,9 @@ function preload(s) {
     img_background = PP.assets.image.load(s, "assets/images/background.png");
     // ss_player = PP.assets.sprite.load_spritesheet(s, "assets/", 223, 190);
     ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/spritesheet_player.png", 100, 150);
-    preload_platforms(s);
+    // preload_platforms(s);
+    preload_mushrooms(s);
+    preload_rain(s);
 };
 
 
@@ -33,7 +35,7 @@ function create(s) {
 
     PP.physics.add_collider(s, player, floor);
 
-    create_platforms(s, player);
+    // create_platforms(s, player);
     configure_player_animation(s, player);
 
     testcamera = PP.shapes.rectangle_add(s, 641, 230, 1, 1, "0xFFFFFF", 1);
@@ -41,17 +43,21 @@ function create(s) {
     PP.physics.add(s, testcamera, PP.physics.type.DYNAMIC);  
     PP.physics.set_allow_gravity(testcamera, false);
 
+    create_mushrooms(s, player);
 
-    // configure_player_animation(s, player);
+    create_rain(s, player);
+
+
+    // configure_player_animation(s, player);v
 };
 
 
 function update(s) {
 
-    // PP.physics.set_velocity_y(testcamera, -30);
+    PP.physics.set_velocity_y(testcamera, -110);
 
 
-    update_platforms(s, player);
+    // update_platforms(s, player);
 
     PP.physics.set_allow_gravity(player, true);
 

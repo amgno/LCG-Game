@@ -1,5 +1,5 @@
 let player_speed = 350;
-let player_jump = 560;
+let player_jump = 660;
 let floor_height = 620;
 let curr_anim;
 let next_anim;
