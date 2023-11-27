@@ -1,3 +1,7 @@
+// 
+
+
+
 let img_background;
 let player;
 let ss_player;
@@ -14,7 +18,7 @@ let testcamera;
 function preload(s) {
     img_background = PP.assets.image.load(s, "assets/images/background.png");
     // ss_player = PP.assets.sprite.load_spritesheet(s, "assets/", 223, 190);
-    ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/spritesheet_player.png", 100, 150);
+    ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 75, 150);
     // preload_platforms(s);
     preload_mushrooms(s);
     preload_rain(s);
@@ -40,7 +44,7 @@ function create(s) {
 
     testcamera = PP.shapes.rectangle_add(s, 641, 230, 1, 1, "0xFFFFFF", 1);
     PP.camera.start_follow(s, testcamera, 0, 0);
-    PP.physics.add(s, testcamera, PP.physics.type.DYNAMIC);  
+    PP.physics.add(s, testcamera, PP.physics.type.DYNAMIC);
     PP.physics.set_allow_gravity(testcamera, false);
 
     create_mushrooms(s, player);
@@ -54,17 +58,17 @@ function create(s) {
 
 function update(s) {
 
-    PP.physics.set_velocity_y(testcamera, -110);
+    // PP.physics.set_velocity_y(testcamera, -110);
 
 
     // update_platforms(s, player);
 
     PP.physics.set_allow_gravity(player, true);
 
-    if(isnoclip){
+    if (isnoclip) {
         PP.physics.set_velocity_y(testcamera, 0);
-    } 
-    
+    }
+
 
     if (PP.interactive.kb.is_key_down(s, PP.key_codes.P)) {
         isnoclip = true;
