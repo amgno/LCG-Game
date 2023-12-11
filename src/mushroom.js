@@ -15,7 +15,7 @@ function collision_mushroom(s, player, m) {
 function collision_platform(s, player, platform) {
     if(player.geometry.x >= platform.geometry.x){
     player.is_on_platform = true;
-    console.log(platform.geometry.x)
+    // console.log(platform.geometry.x)
     }
 }
 
@@ -25,8 +25,8 @@ function collision_platform(s, player, platform) {
 function create_mushrooms(s, player) {
     const platformWidth = 200;
     const platformHeight = 100;
-    const verticalGap = 160;
-    const horizontalCoordinates = [100, 400, 850, 200]; 
+    const verticalGap = 180;
+    const horizontalCoordinates = [100, 400, 850, 200, 930]; 
 
 
     let currentY = -400;

@@ -46,11 +46,10 @@ let img_plat15;
 
 
 
-
 function preload(s){
-    ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 75, 150);
+    ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 82.5, 165);
     img_background = PP.assets.image.load(s, "assets/images/backgrounddim3.png");
-
+    preload_egg(s);
 
 
     img_plat1 = PP.assets.image.load(s, "assets/images/plat/plat1.png");
@@ -68,6 +67,9 @@ function preload(s){
     img_plat13 = PP.assets.image.load(s, "assets/images/plat/plat13.png");
     img_plat14 = PP.assets.image.load(s, "assets/images/plat/plat14.png");
     img_plat15 = PP.assets.image.load(s, "assets/images/plat/plat15.png");
+
+
+
 }
 
 
@@ -76,6 +78,7 @@ function create(s){
     player = PP.assets.sprite.add(s, ss_player, 100, 220, 0.5, 1);
     configure_player_animation(s, player);
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
+    create_egg(s, player);
 
     // floor = PP.shapes.rectangle_add(s, 640, 620, 1280, 1, "0x000000", 0);
     // PP.physics.add(s, floor, PP.physics.type.STATIC);
@@ -232,7 +235,7 @@ function update(s){
         PP.physics.set_velocity_y(plat9, 100);
     }
 
-
+    console.log(player.geometry.y)
 
 }
 function destroy(s){}

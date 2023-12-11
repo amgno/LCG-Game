@@ -1,14 +1,9 @@
-// 
-
-
-
 let img_background;
 let player;
 let ss_player;
 let floor;
 let background;
 let isnoclip = false;
-let txt_score;
 
 
 
@@ -19,7 +14,7 @@ let testcamera;
 function preload(s) {
     img_background = PP.assets.image.load(s, "assets/images/background.png");
     // ss_player = PP.assets.sprite.load_spritesheet(s, "assets/", 223, 190);
-    ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 82.5, 165);
+    ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/spritesheet_player.png", 100, 150);
     // preload_platforms(s);
     preload_mushrooms(s);
     preload_rain(s);
@@ -27,10 +22,7 @@ function preload(s) {
 
 
 function create(s) {
-    PP.gameState.set_variable("vita", 0);
     background = PP.assets.tilesprite.add(s, img_background, 0, -4400, 1280, 5000, 0, 0);
-
-    
     background.tile_geometry.flip_y = 1;
 
     // background = PP.assets.image.add(s, img_background, 0 , 0, 0, 0);
@@ -46,17 +38,14 @@ function create(s) {
     // create_platforms(s, player);
     configure_player_animation(s, player);
 
-    // testcamera = PP.shapes.rectangle_add(s, 641, 230, 1, 1, "0xFFFFFF", 1);
-    // PP.camera.start_follow(s, testcamera, 0, 0);
-    // PP.physics.add(s, testcamera, PP.physics.type.DYNAMIC);
-    // PP.physics.set_allow_gravity(testcamera, false);
+    testcamera = PP.shapes.rectangle_add(s, 641, 230, 1, 1, "0xFFFFFF", 1);
+    PP.camera.start_follow(s, testcamera, 0, 0);
+    PP.physics.add(s, testcamera, PP.physics.type.DYNAMIC);  
+    PP.physics.set_allow_gravity(testcamera, false);
 
     create_mushrooms(s, player);
 
     create_rain(s, player);
-
-
-    txt_score = PP.shapes.text_styled_add(s, 10, 10, "X X X", 30, "Helvetica", "normal", "0xFFFFFF", null);
 
 
     // configure_player_animation(s, player);v
@@ -65,19 +54,17 @@ function create(s) {
 
 function update(s) {
 
-    PP.camera.start_follow(s, player, -320, 100);
-
-    // PP.physics.set_velocity_y(testcamera, -110);
+    PP.physics.set_velocity_y(testcamera, -110);
 
 
     // update_platforms(s, player);
 
     PP.physics.set_allow_gravity(player, true);
 
-    if (isnoclip) {
+    if(isnoclip){
         PP.physics.set_velocity_y(testcamera, 0);
-    }
-
+    } 
+    
 
     if (PP.interactive.kb.is_key_down(s, PP.key_codes.P)) {
         isnoclip = true;
@@ -90,18 +77,6 @@ function update(s) {
 
 
     background.tile_geometry.y = PP.camera.get_scroll_y(s) * 0.05;
-
-    console.log(player.geometry.y);
-    if (player.geometry.y <= -4500) {
-        PP.scenes.start("scene1b");
-    }
-    
-    if (PP.interactive.kb.is_key_down(s, PP.key_codes.L)) {
-        PP.scenes.start("scene1b");
-    }
-
-
-
 
 };
 
