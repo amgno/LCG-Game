@@ -23,6 +23,7 @@ function create_rain(s, player){
         let y = Math.floor(Math.random() * (1800 - 2000 + 1)) + 1100;
         let rain = PP.assets.image.add(s, img_rain_1, x, -y*5, 0, 0, 0);
         PP.physics.add(s, rain, PP.physics.type.DYNAMIC);
+        
     }
     
     function generateRaindrops(s, count) {

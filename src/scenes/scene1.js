@@ -28,7 +28,7 @@ function preload(s) {
 
 function create(s) {
     PP.gameState.set_variable("vita", 0);
-    background = PP.assets.tilesprite.add(s, img_background, 0, -4400, 1280, 5000, 0, 0);
+    background = PP.assets.tilesprite.add(s, img_background, 0, -4520, 2280, 5300, 0, 0);
 
     
     background.tile_geometry.flip_y = 1;
@@ -37,7 +37,7 @@ function create(s) {
     player = PP.assets.sprite.add(s, ss_player, 150, 220, 0.5, 1);
 
 
-    floor = PP.shapes.rectangle_add(s, 640, 620, 1280, 1, "0x000000", 0);
+    floor = PP.shapes.rectangle_add(s, 640, 620, 3080, 1, "0x000000", 0);
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
     PP.physics.add(s, floor, PP.physics.type.STATIC);
 
@@ -91,8 +91,8 @@ function update(s) {
 
     background.tile_geometry.y = PP.camera.get_scroll_y(s) * 0.05;
 
-    console.log(player.geometry.y);
-    if (player.geometry.y <= -4500) {
+    // console.log(player.geometry.y);
+    if (player.geometry.y <= -4182) {
         PP.scenes.start("scene1b");
     }
     
