@@ -57,7 +57,7 @@ function collision(s, player, platform){
 
 function preload(s){
     ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 82.5, 165);
-    img_background = PP.assets.image.load(s, "assets/images/background.png");
+    img_background = PP.assets.image.load(s, "assets/images/background3.png");
 }
 function create(s){
     player = PP.assets.sprite.add(s, ss_player, 100, 220, 0.5, 1);

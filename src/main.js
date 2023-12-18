@@ -3,7 +3,7 @@ const config = {
     canvas_height       : 800,
     canvas_id           : "game_area",
     background_color    : 0xf4d208,
-    debug_mode          : true,
+    debug_mode          : false,
     gravity_value       : 700,
 };
 

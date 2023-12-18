@@ -34,7 +34,8 @@ function preload(s) {
 
 function create(s) {
     PP.gameState.set_variable("vita", 0);
-    background = PP.assets.tilesprite.add(s, img_background, 0, -4520, 2280, 5300, 0, 0);
+    // background = PP.assets.tilesprite.add(s, img_background, 0, -4520, 2280, 5300, 0, 0);
+    background = PP.assets.image.add(s, img_background, 0, -4520, 0, 0);
 
     
     background.tile_geometry.flip_y = 1;
@@ -71,7 +72,8 @@ function create(s) {
 
 function update(s) {
 
-    PP.camera.start_follow(s, player, -320, 100);
+    PP.camera.start_follow(s, player, -320, 350);
+    // PP.txt_score.start_follow(s, player, -320, 100);
 
     // PP.physics.set_velocity_y(testcamera, -110);
 
@@ -93,6 +95,7 @@ function update(s) {
         isnoclip = false;
         manage_player_update(s, player);
     }
+
 
 
     background.tile_geometry.y = PP.camera.get_scroll_y(s) * 0.05;
