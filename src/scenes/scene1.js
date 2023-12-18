@@ -13,7 +13,12 @@ let txt_score;
 
 
 let testcamera;
-
+function collision(s, player, platform){
+    console.log("a")
+    if(player.geometry.y <= platform.geometry.y){
+        player.is_on_platform = true;
+        }
+}
 
 
 function preload(s) {
@@ -24,6 +29,7 @@ function preload(s) {
     preload_mushrooms(s);
     preload_rain(s);
 };
+
 
 
 function create(s) {
@@ -41,7 +47,7 @@ function create(s) {
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
     PP.physics.add(s, floor, PP.physics.type.STATIC);
 
-    PP.physics.add_collider(s, player, floor);
+    PP.physics.add_collider_f(s, player, floor, collision);
 
     // create_platforms(s, player);
     configure_player_animation(s, player);
