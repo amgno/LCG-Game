@@ -93,11 +93,15 @@ function update(s) {
 
     // console.log(player.geometry.y);
     if (player.geometry.y <= -4182) {
-        PP.scenes.start("scene1b");
+        PP.scenes.start("scene2");
     }
     
     if (PP.interactive.kb.is_key_down(s, PP.key_codes.L)) {
-        PP.scenes.start("scene1b");
+        PP.scenes.start("scene2");
+    }
+
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.K)) {
+        PP.scenes.start("scene3");
     }
 
 

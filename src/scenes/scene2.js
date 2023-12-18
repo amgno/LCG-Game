@@ -244,4 +244,4 @@ function destroy(s){}
 
 
 
-PP.scenes.add("scene1b", preload, create, update, destroy);
+PP.scenes.add("scene2", preload, create, update, destroy);

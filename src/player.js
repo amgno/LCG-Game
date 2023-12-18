@@ -42,7 +42,7 @@ function manage_player_update(s, player) {
 
     // }
     if (PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
-        if (player.geometry.y >= floor_height - 1 || player.is_on_platform) {
+        if (player.is_on_platform) {
             PP.physics.set_acceleration_y(player, 0.1)
             PP.physics.set_velocity_y(player, -player_jump);
             player.is_on_platform = false;
