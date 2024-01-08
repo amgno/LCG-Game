@@ -34,6 +34,7 @@ function next(s){
 
 var isSelectFunctionCalled = false;
 function update(s){
+
     // console.log(tavola);
     if (PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE) && !isSelectFunctionCalled) {
         tavola=tavola+1;

@@ -6,10 +6,10 @@ let next_anim;
 let testfallback = false;
 
 function configure_player_animation(s, player) {
-    PP.assets.sprite.animation_add_list(player, "run", [2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 10, -1); //array dato che i frame sono sparpagliati
-    PP.assets.sprite.animation_add_list(player, "stop", [0], 10, 1); //array dato che i frame sono sparpagliati
-    PP.assets.sprite.animation_add_list(player, "jump_up", [28], 10, 1); //array dato che i frame sono sparpagliati
-    PP.assets.sprite.animation_add_list(player, "jump_down", [16], 10, 1); //array dato che i frame sono sparpagliati
+    PP.assets.sprite.animation_add_list(player, "run", [15, 14, 13, 12, 11, 10, 9, 8, 7, 6], 10, -1); //array dato che i frame sono sparpagliati
+    PP.assets.sprite.animation_add_list(player, "stop", [17], 10, 1); //array dato che i frame sono sparpagliati
+    PP.assets.sprite.animation_add_list(player, "jump_up", [1, 0, 3], 15, 0); //array dato che i frame sono sparpagliati
+    PP.assets.sprite.animation_add_list(player, "jump_down", [3, 4, 5], 7, 0); //array dato che i frame sono sparpagliati
 }
 
 

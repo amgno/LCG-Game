@@ -75,7 +75,9 @@ function create(s) {
     PP.physics.add(s, colliderr, PP.physics.type.STATIC);
     PP.physics.add_collider(s, player, colliderr);
 
-    txt_score = PP.shapes.text_styled_add(s, 10, 10, "X X X", 30, "Helvetica", "normal", "0xFFFFFF", null);
+    txt_score = PP.shapes.text_styled_add(s, 100, 100, "X X X", 30, "Helvetica", "normal", "0xFFFFFF", null);
+    txt_score.tile_geometry.scroll_factor_x = 0;
+    txt_score.tile_geometry.scroll_factor_y = 0;
 
 
 
