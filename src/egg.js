@@ -1,5 +1,6 @@
 let img_egg
 let egg
+let diedfromegg = 0;
 
 function preload_egg(s){
     img_egg = PP.assets.image.load(s, "assets/images/rain.png")

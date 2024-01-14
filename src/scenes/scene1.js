@@ -1,7 +1,5 @@
 // 
 
-
-
 let img_background;
 let player;
 let ss_player;
@@ -10,10 +8,13 @@ let background;
 let isnoclip = false;
 let txt_score;
 let vecchia;
-
+let deathimg;
 
 
 let testcamera;
+
+
+
 function collision(s, player, platform){
     // console.log("a")
     if(player.geometry.y <= platform.geometry.y){
@@ -75,7 +76,7 @@ function create(s) {
     PP.physics.add(s, colliderr, PP.physics.type.STATIC);
     PP.physics.add_collider(s, player, colliderr);
 
-    txt_score = PP.shapes.text_styled_add(s, 100, 100, "X X X", 30, "Helvetica", "normal", "0xFFFFFF", null);
+    txt_score = PP.shapes.text_styled_add(s, 100, 100, "X X X", 40, "Helvetica", "normal", "0xFFFFFF", null);
     txt_score.tile_geometry.scroll_factor_x = 0;
     txt_score.tile_geometry.scroll_factor_y = 0;
 
@@ -85,9 +86,44 @@ function create(s) {
     // configure_player_animation(s, player);v
 };
 
+function deathhandler(s, num){
+    PP.gameState.set_Variable("deathimg", num);
+    PP.scenes.start("death");
+}
 
 function update(s) {
 
+    if (hp === 0){
+        if(diedfromrain){
+            deathhandler(s, 6);
+        }
+        if (diedfromfall){
+            deathhandler(s, 3)
+        }
+    }
+
+
+    if (hp === 3){
+        PP.shapes.destroy(txt_score);
+        txt_score = PP.shapes.text_styled_add(s, 100, 100, "X X X", 40, "Helvetica", "bold", "0xFFFFFF", null);
+        txt_score.tile_geometry.scroll_factor_x = 0;
+        txt_score.tile_geometry.scroll_factor_y = 0;
+    }
+
+    if (hp === 2){
+        PP.shapes.destroy(txt_score);
+        txt_score = PP.shapes.text_styled_add(s, 100, 100, "X X", 40, "Helvetica", "bold", "0xFFFFFF", null);
+        txt_score.tile_geometry.scroll_factor_x = 0;
+        txt_score.tile_geometry.scroll_factor_y = 0;
+    }
+
+
+    if (hp === 1){
+        PP.shapes.destroy(txt_score);
+        txt_score = PP.shapes.text_styled_add(s, 100, 100, "X", 40, "Helvetica", "bold", "0xFFFFFF", null);
+        txt_score.tile_geometry.scroll_factor_x = 0;
+        txt_score.tile_geometry.scroll_factor_y = 0;
+    }
     
 
     PP.camera.start_follow(s, player, -320, 300);
@@ -126,11 +162,12 @@ function update(s) {
     background.tile_geometry.y = PP.camera.get_scroll_y(s) * 0.05;
 
     // console.log(player.geometry.y);
-    if (player.geometry.y <= -4182) {
+    if (player.geometry.y <= -3950) {
         PP.scenes.start("scene2");
     }
     
     if (PP.interactive.kb.is_key_down(s, PP.key_codes.L)) {
+
         PP.scenes.start("scene2");
     }
 

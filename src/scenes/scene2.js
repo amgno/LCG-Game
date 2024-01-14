@@ -4,7 +4,10 @@ let ss_player;
 let floor;
 let background;
 let isnoclip = false;
+let diedfromcloud = 0;
 
+
+let hp = 3;
 
 
 
@@ -70,6 +73,19 @@ function preload(s){
 
 
 
+}
+
+
+function collision_platform(s, player, platform) {
+    
+    
+    if (player.geometry.y <= platform.geometry.y) {
+        player.is_on_platform = true;
+
+        // if(player.geometry.y > lastPlatformPositionY){
+        //     console.log("caduta")
+        // }
+    }
 }
 
 
@@ -173,8 +189,34 @@ function create(s){
 
 
 
+    lastPlatformPositionY = player.geometry.y;
+
 }
+
+
+
+function deathhandler(s, num){
+    PP.gameState.set_Variable("deathimg", num);
+    PP.scenes.start("death");
+}
+
+
 function update(s){
+
+
+    if (player.geometry.y > 1600){
+        diedfromcloud = 1;
+        hp = 0;
+    }
+
+    if (hp === 0){
+        if(diedfromcloud){
+            deathhandler(s, 2);
+        }
+    }
+
+
+
     PP.physics.set_allow_gravity(player, true);
 
     if (isnoclip) {
@@ -194,10 +236,10 @@ function update(s){
 
 
     if(plat4.geometry.y >= 704) {
-        PP.physics.set_velocity_y(plat4, -100);
+        PP.physics.set_velocity_y(plat4, -70);
     }
     if(plat4.geometry.y <= 500) {
-        PP.physics.set_velocity_y(plat4, 100);
+        PP.physics.set_velocity_y(plat4, 70);
     }
 
     if(plat5.geometry.x >= 1155) {
@@ -235,7 +277,6 @@ function update(s){
         PP.physics.set_velocity_y(plat9, 100);
     }
 
-    console.log(player.geometry.y)
 
 }
 function destroy(s){}

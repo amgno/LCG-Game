@@ -42,6 +42,8 @@ let plat38;
 let plat39;
 let plat40;
 
+let diedfromfall = 0;
+
 let lastPlatformPositionY = 640;
 
 let img_1;
@@ -52,7 +54,6 @@ function preload_mushrooms(s) {
 
 function collision_mushroom(s, player, m) {
     PP.assets.destroy(m);
-    let previous_score = PP.gameState.get_variable("score");
     // PP.gameState.set_variable("score", previous_score+10);
 }
 
@@ -67,7 +68,11 @@ function collision_platform(s, player, platform) {
         // }
 
         if((player.geometry.y - lastPlatformPositionY)>600){
-            PP.scenes.start("menu");
+            hp = hp - 1;
+            console.log(hp);
+            if (hp === 0){
+                diedfromfall = 1;
+            }
         }
 
         lastPlatformPositionY = player.geometry.y;
