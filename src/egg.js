@@ -1,6 +1,7 @@
 let img_egg
 let egg
 let diedfromegg = 0;
+let hp2 = 3;
 
 function preload_egg(s){
     img_egg = PP.assets.image.load(s, "assets/images/rain.png")
@@ -15,6 +16,7 @@ function create_egg(s, player){
         egg = PP.assets.image.add(s, img_egg, 3650, y, 0, 0, 0);
         PP.physics.add(s, egg, PP.physics.type.DYNAMIC);
         PP.physics.set_allow_gravity(egg, false);
+        PP.physics.add_collider_f(s, player, egg, deathegg);
     }
     
     function generateEgg(s, count) {
@@ -29,5 +31,16 @@ function create_egg(s, player){
         PP.physics.set_velocity_x(egg, -800);
 
     }, 1000);
+}
+
+
+
+function deathegg(s, player, egg){
+    hp2 = hp2-1;
+    console.log("current hp2:"+hp2);
+    PP.shapes.destroy(egg);
+    if (hp2 === 0){
+        diedfromegg = 1;
+    }
 }
 

@@ -84,7 +84,7 @@ function update(s) {
     };
 
     function test3(s) {
-        PP.scenes.start("scene1")
+        PP.scenes.start("scene3")
         PP.scenes.stop("menu");
     };
 

@@ -30,9 +30,18 @@ function create(s) {
     else if (deathimg === 2) {
         PP.assets.image.add(s, img_death_2, 0, 0, 0, 0);
     }
+    else if (deathimg === 5) {
+        PP.assets.image.add(s, img_death_5, 0,0,0,0)
+    }
+    else if (deathimg === 1) {
+        PP.assets.image.add(s, img_death_1, 0,0,0,0)
+    }
 };
 
 function update(s) {
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
+        PP.scenes.start("scene3");
+    }
 };
 
 function destroy(s) { };

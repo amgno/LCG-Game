@@ -1,4 +1,5 @@
-// 
+//aggiungere punti hp +
+// sistemare colore
 
 let img_background;
 let player;

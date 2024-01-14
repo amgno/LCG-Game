@@ -1,3 +1,9 @@
+// sistemare bug quando sto su nuvole che vanno y+
+//sistemare pioggia
+
+
+
+
 let img_background;
 let player;
 let ss_player;
@@ -7,8 +13,9 @@ let isnoclip = false;
 let diedfromcloud = 0;
 
 
-let hp = 3;
 
+
+let txt_text;
 
 
 
@@ -49,7 +56,7 @@ let img_plat15;
 
 
 
-function preload(s){
+function preload(s) {
     ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 82.5, 165);
     img_background = PP.assets.image.load(s, "assets/images/backgrounddim3.png");
     preload_egg(s);
@@ -77,8 +84,8 @@ function preload(s){
 
 
 function collision_platform(s, player, platform) {
-    
-    
+
+
     if (player.geometry.y <= platform.geometry.y) {
         player.is_on_platform = true;
 
@@ -90,7 +97,8 @@ function collision_platform(s, player, platform) {
 
 
 
-function create(s){
+function create(s) {
+    txt_text = PP.shapes.text_styled_add(s, 100, 100, "X X X", 40, "Helvetica", "normal", "0xFFFFFF", null);
     player = PP.assets.sprite.add(s, ss_player, 100, 220, 0.5, 1);
     configure_player_animation(s, player);
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
@@ -162,7 +170,7 @@ function create(s){
     PP.physics.add_collider_f(s, player, plat14, collision_platform);
     PP.physics.add_collider_f(s, player, plat15, collision_platform);
 
-    
+
 
 
 
@@ -195,22 +203,56 @@ function create(s){
 
 
 
-function deathhandler(s, num){
+function deathhandler(s, num) {
     PP.gameState.set_Variable("deathimg", num);
     PP.scenes.start("death");
 }
 
 
-function update(s){
+function update(s) {
 
+    //hud
+    txt_text.tile_geometry.scroll_factor_x = 0;
+    txt_text.tile_geometry.scroll_factor_y = 0;
 
-    if (player.geometry.y > 1600){
-        diedfromcloud = 1;
-        hp = 0;
+    console.log(hp2);
+    if (hp2 === 0) {
+        if (diedfromegg) {
+            deathhandler(s, 1);
+        }
     }
 
-    if (hp === 0){
-        if(diedfromcloud){
+
+    if (hp2 === 3) {
+        PP.shapes.destroy(txt_text);
+        txt_text = PP.shapes.text_styled_add(s, 100, 100, "X X X", 40, "Helvetica", "bold", "0xFFFFFF", null);
+        txt_text.tile_geometry.scroll_factor_x = 0;
+        txt_text.tile_geometry.scroll_factor_y = 0;
+    }
+
+    if (hp2 === 2) {
+        PP.shapes.destroy(txt_text);
+        txt_text = PP.shapes.text_styled_add(s, 100, 100, "X X", 40, "Helvetica", "bold", "0xFFFFFF", null);
+        txt_text.tile_geometry.scroll_factor_x = 0;
+        txt_text.tile_geometry.scroll_factor_y = 0;
+    }
+
+
+    if (hp2 === 1) {
+        PP.shapes.destroy(txt_text);
+        txt_text = PP.shapes.text_styled_add(s, 100, 100, "X", 40, "Helvetica", "bold", "0xFFFFFF", null);
+        txt_text.tile_geometry.scroll_factor_x = 0;
+        txt_text.tile_geometry.scroll_factor_y = 0;
+    }
+
+
+    if (player.geometry.y > 1600) {
+        diedfromcloud = 1;
+        hp2 = 0;
+    }
+
+    if (hp2 === 0) {
+        if (diedfromcloud) {
             deathhandler(s, 2);
         }
     }
@@ -235,51 +277,54 @@ function update(s){
 
 
 
-    if(plat4.geometry.y >= 704) {
+    if (plat4.geometry.y >= 704) {
         PP.physics.set_velocity_y(plat4, -70);
     }
-    if(plat4.geometry.y <= 500) {
+    if (plat4.geometry.y <= 500) {
         PP.physics.set_velocity_y(plat4, 70);
     }
 
-    if(plat5.geometry.x >= 1155) {
+    if (plat5.geometry.x >= 1155) {
         PP.physics.set_velocity_x(plat5, -100);
     }
-    if(plat5.geometry.x <= 948) {
+    if (plat5.geometry.x <= 948) {
         PP.physics.set_velocity_x(plat5, 100);
     }
 
-    if(plat6.geometry.y >= 1292) {
+    if (plat6.geometry.y >= 1292) {
         PP.physics.set_velocity_y(plat6, -100);
     }
-    if(plat6.geometry.y <= 833) {
+    if (plat6.geometry.y <= 833) {
         PP.physics.set_velocity_y(plat6, 100);
     }
 
-    if(plat7.geometry.y >= 691) {
+    if (plat7.geometry.y >= 691) {
         PP.physics.set_velocity_y(plat7, -100);
     }
-    if(plat7.geometry.y <= 351) {
+    if (plat7.geometry.y <= 351) {
         PP.physics.set_velocity_y(plat7, 100);
     }
 
-    if(plat8.geometry.x >= 2102) {
+    if (plat8.geometry.x >= 2102) {
         PP.physics.set_velocity_x(plat8, -100);
     }
-    if(plat8.geometry.x <= 1728) {
+    if (plat8.geometry.x <= 1728) {
         PP.physics.set_velocity_x(plat8, 100);
     }
 
-    if(plat9.geometry.y >= 900) {
+    if (plat9.geometry.y >= 900) {
         PP.physics.set_velocity_y(plat9, -100);
     }
-    if(plat9.geometry.y <= 660) {
+    if (plat9.geometry.y <= 660) {
         PP.physics.set_velocity_y(plat9, 100);
     }
 
 
 }
-function destroy(s){}
+
+
+
+function destroy(s) { }
 
 
 

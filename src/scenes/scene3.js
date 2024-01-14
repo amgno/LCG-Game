@@ -1,3 +1,8 @@
+//aggiungere hud, con chiavi sbiatite
+//aggiungere punti riferimenti
+//aggiungere tavole finali 
+
+
 let img_background;
 let player;
 let ss_player;
@@ -47,10 +52,16 @@ let tubo35;
 let tubo36;
 
 
+let kimage;
+
+let key1;
+let key2;
+let key3;
+
+
 
 function collision(s, player, platform){
-    console.log("a")
-    if(player.geometry.y <= platform.geometry.y){
+    if (player.geometry.y <= platform.geometry.y) {
         player.is_on_platform = true;
         }
 }
@@ -58,9 +69,13 @@ function collision(s, player, platform){
 function preload(s){
     ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 82.5, 165);
     img_background = PP.assets.image.load(s, "assets/images/background3.png");
+    kimage = PP.assets.image.load(s, "assets/images/key.png")
 }
 function create(s){
-    player = PP.assets.sprite.add(s, ss_player, 100, 220, 0.5, 1);
+    player = PP.assets.sprite.add(s, ss_player, 100, 645, 0.5, 1);
+    key1 = PP.assets.image.add(s, kimage, 4682, 1350, 0,0) //ok
+    key2 = PP.assets.image.add(s, kimage, 3586, -606, 0,0)
+    key3 = PP.assets.image.add(s, kimage, 400, 200, 0,0)
     configure_player_animation(s, player);
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
     // PP.shapes.rectangle_add(s, 100,200 ,100,220, "0x000000", 1)
@@ -163,9 +178,34 @@ function create(s){
 
 
 }
+
+
+
+function deathhandler(s, num){
+    PP.gameState.set_Variable("deathimg", num);
+    PP.scenes.start("death");
+}
+
+let diedfromlost = 0
+
 function update(s){
     manage_player_update(s, player);
 
+
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.O)) {
+        console.log(player.geometry.x + " " + player.geometry.y)
+    }
+
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.J)) {
+        player.geometry.x = 3586;
+        player.geometry.y = -606;
+    }
+
+    if(player.geometry.y > 2400) {
+        hp = 0;
+        diedfromlost = 1;
+        deathhandler(s, 5)
+    }
 
 
 }
