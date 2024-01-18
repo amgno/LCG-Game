@@ -32,7 +32,7 @@ function create_rain(s, player){
 
 
     function createRaindrop(s) {
-        let x = Math.floor(Math.random() * (0 - 1200 + 1)) + 1200;
+        let x = Math.floor(Math.random() * (0 - 4000 + 1)) + 4000;
         let y = Math.floor(Math.random() * (1800 - 2000 + 1)) + 1100;
         let rain = PP.assets.image.add(s, img_rain_1, x, -y*5, 0, 0, 0);
         PP.physics.add(s, rain, PP.physics.type.DYNAMIC);
@@ -48,5 +48,5 @@ function create_rain(s, player){
     // Generate a raindrop every 100 milliseconds
     setInterval(function () {
         generateRaindrops(s, 1);
-    }, 1000);
+    }, 700);
 }

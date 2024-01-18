@@ -14,6 +14,11 @@ let vecchia;
 let deathimg;
 
 
+let hpimg;
+let hpi;
+let hpi2;
+let hpi3;
+
 let testcamera;
 
 
@@ -36,6 +41,8 @@ function preload(s) {
     preload_mushrooms(s);
     preload_rain(s);
 
+    hpimg = PP.assets.image.load(s, "assets/images/cuoreimg.png")
+
 };
 
 
@@ -46,6 +53,16 @@ function create(s) {
     background = PP.assets.image.add(s, img_background, 0, -4540, 0, 0);
 
     PP.assets.image.add(s, vecchia, 70, 460, 0,0);
+
+    hpi = PP.assets.image.add(s, hpimg, 50, 60, 0,0)
+    hpi2 = PP.assets.image.add(s, hpimg, 120, 60, 0,0)
+    hpi3 = PP.assets.image.add(s, hpimg, 190, 60, 0,0)
+    hpi.tile_geometry.scroll_factor_x = 0;
+    hpi.tile_geometry.scroll_factor_y = 0;
+    hpi2.tile_geometry.scroll_factor_x = 0;
+    hpi2.tile_geometry.scroll_factor_y = 0;
+    hpi3.tile_geometry.scroll_factor_x = 0;
+    hpi3.tile_geometry.scroll_factor_y = 0;
 
     
     background.tile_geometry.flip_y = 1;
@@ -81,10 +98,6 @@ function create(s) {
     PP.physics.add(s, colliderr, PP.physics.type.STATIC);
     PP.physics.add_collider(s, player, colliderr);
 
-    txt_score = PP.shapes.text_styled_add(s, 100, 100, "X X X", 40, "Helvetica", "normal", "0xFFFFFF", null);
-    txt_score.tile_geometry.scroll_factor_x = 0;
-    txt_score.tile_geometry.scroll_factor_y = 0;
-
 
 
 
@@ -109,25 +122,41 @@ function update(s) {
 
 
     if (hp === 3){
-        PP.shapes.destroy(txt_score);
-        txt_score = PP.shapes.text_styled_add(s, 100, 100, "X X X", 40, "Helvetica", "bold", "0xFFFFFF", null);
-        txt_score.tile_geometry.scroll_factor_x = 0;
-        txt_score.tile_geometry.scroll_factor_y = 0;
+        PP.shapes.destroy(hpi);
+        PP.shapes.destroy(hpi2);
+        PP.shapes.destroy(hpi3);
+
+        hpi = PP.assets.image.add(s, hpimg, 50, 60, 0,0)
+        hpi2 = PP.assets.image.add(s, hpimg, 120, 60, 0,0)
+        hpi3 = PP.assets.image.add(s, hpimg, 190, 60, 0,0)
+        hpi.tile_geometry.scroll_factor_x = 0;
+        hpi.tile_geometry.scroll_factor_y = 0;
+        hpi2.tile_geometry.scroll_factor_x = 0;
+        hpi2.tile_geometry.scroll_factor_y = 0;
+        hpi3.tile_geometry.scroll_factor_x = 0;
+        hpi3.tile_geometry.scroll_factor_y = 0;
     }
 
     if (hp === 2){
-        PP.shapes.destroy(txt_score);
-        txt_score = PP.shapes.text_styled_add(s, 100, 100, "X X", 40, "Helvetica", "bold", "0xFFFFFF", null);
-        txt_score.tile_geometry.scroll_factor_x = 0;
-        txt_score.tile_geometry.scroll_factor_y = 0;
+        PP.shapes.destroy(hpi);
+        PP.shapes.destroy(hpi2);
+        PP.shapes.destroy(hpi3);
+        hpi = PP.assets.image.add(s, hpimg, 50, 60, 0,0)
+        hpi2 = PP.assets.image.add(s, hpimg, 120, 60, 0,0)
+        hpi.tile_geometry.scroll_factor_x = 0;
+        hpi.tile_geometry.scroll_factor_y = 0;
+        hpi2.tile_geometry.scroll_factor_x = 0;
+        hpi2.tile_geometry.scroll_factor_y = 0;
     }
 
 
     if (hp === 1){
-        PP.shapes.destroy(txt_score);
-        txt_score = PP.shapes.text_styled_add(s, 100, 100, "X", 40, "Helvetica", "bold", "0xFFFFFF", null);
-        txt_score.tile_geometry.scroll_factor_x = 0;
-        txt_score.tile_geometry.scroll_factor_y = 0;
+        PP.shapes.destroy(hpi);
+        PP.shapes.destroy(hpi2);
+        PP.shapes.destroy(hpi3);
+        hpi = PP.assets.image.add(s, hpimg, 50, 60, 0,0);
+        hpi.tile_geometry.scroll_factor_x = 0;
+        hpi.tile_geometry.scroll_factor_y = 0;
     }
     
 

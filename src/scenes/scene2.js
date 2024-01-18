@@ -13,7 +13,10 @@ let isnoclip = false;
 let diedfromcloud = 0;
 
 
-
+let hpimg;
+let hpi;
+let hpi2;
+let hpi3;
 
 let txt_text;
 
@@ -79,7 +82,7 @@ function preload(s) {
     img_plat15 = PP.assets.image.load(s, "assets/images/plat/plat15.png");
 
 
-
+    hpimg = PP.assets.image.load(s, "assets/images/cuoreimg.png")
 }
 
 
@@ -97,7 +100,6 @@ function collision_platform(s, player, platform) {
 
 
 function create(s) {
-    txt_text = PP.shapes.text_styled_add(s, 100, 100, "X X X", 40, "Helvetica", "normal", "0xFFFFFF", null);
     player = PP.assets.sprite.add(s, ss_player, 100, 220, 0.5, 1);
     configure_player_animation(s, player);
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
@@ -127,6 +129,15 @@ function create(s) {
 
 
 
+    hpi = PP.assets.image.add(s, hpimg, 50, 60, 0,0)
+    hpi2 = PP.assets.image.add(s, hpimg, 120, 60, 0,0)
+    hpi3 = PP.assets.image.add(s, hpimg, 190, 60, 0,0)
+    hpi.tile_geometry.scroll_factor_x = 0;
+    hpi.tile_geometry.scroll_factor_y = 0;
+    hpi2.tile_geometry.scroll_factor_x = 0;
+    hpi2.tile_geometry.scroll_factor_y = 0;
+    hpi3.tile_geometry.scroll_factor_x = 0;
+    hpi3.tile_geometry.scroll_factor_y = 0;
 
 
 
@@ -211,8 +222,6 @@ function deathhandler(s, num) {
 function update(s) {
 
     //hud
-    txt_text.tile_geometry.scroll_factor_x = 0;
-    txt_text.tile_geometry.scroll_factor_y = 0;
 
     if (hp2 === 0) {
         if (diedfromegg) {
@@ -221,26 +230,52 @@ function update(s) {
     }
 
 
-    if (hp2 === 3) {
-        PP.shapes.destroy(txt_text);
-        txt_text = PP.shapes.text_styled_add(s, 100, 100, "X X X", 40, "Helvetica", "bold", "0xFFFFFF", null);
-        txt_text.tile_geometry.scroll_factor_x = 0;
-        txt_text.tile_geometry.scroll_factor_y = 0;
-    }
-
-    if (hp2 === 2) {
-        PP.shapes.destroy(txt_text);
-        txt_text = PP.shapes.text_styled_add(s, 100, 100, "X X", 40, "Helvetica", "bold", "0xFFFFFF", null);
-        txt_text.tile_geometry.scroll_factor_x = 0;
-        txt_text.tile_geometry.scroll_factor_y = 0;
+    if (hp === 0){
+        if(diedfromrain){
+            deathhandler(s, 6);
+        }
+        if (diedfromfall){
+            deathhandler(s, 3)
+        }
     }
 
 
-    if (hp2 === 1) {
-        PP.shapes.destroy(txt_text);
-        txt_text = PP.shapes.text_styled_add(s, 100, 100, "X", 40, "Helvetica", "bold", "0xFFFFFF", null);
-        txt_text.tile_geometry.scroll_factor_x = 0;
-        txt_text.tile_geometry.scroll_factor_y = 0;
+    if (hp2 === 3){
+        PP.shapes.destroy(hpi);
+        PP.shapes.destroy(hpi2);
+        PP.shapes.destroy(hpi3);
+
+        hpi = PP.assets.image.add(s, hpimg, 50, 60, 0,0)
+        hpi2 = PP.assets.image.add(s, hpimg, 120, 60, 0,0)
+        hpi3 = PP.assets.image.add(s, hpimg, 190, 60, 0,0)
+        hpi.tile_geometry.scroll_factor_x = 0;
+        hpi.tile_geometry.scroll_factor_y = 0;
+        hpi2.tile_geometry.scroll_factor_x = 0;
+        hpi2.tile_geometry.scroll_factor_y = 0;
+        hpi3.tile_geometry.scroll_factor_x = 0;
+        hpi3.tile_geometry.scroll_factor_y = 0;
+    }
+
+    if (hp2 === 2){
+        PP.shapes.destroy(hpi);
+        PP.shapes.destroy(hpi2);
+        PP.shapes.destroy(hpi3);
+        hpi = PP.assets.image.add(s, hpimg, 50, 60, 0,0)
+        hpi2 = PP.assets.image.add(s, hpimg, 120, 60, 0,0)
+        hpi.tile_geometry.scroll_factor_x = 0;
+        hpi.tile_geometry.scroll_factor_y = 0;
+        hpi2.tile_geometry.scroll_factor_x = 0;
+        hpi2.tile_geometry.scroll_factor_y = 0;
+    }
+
+
+    if (hp2 === 1){
+        PP.shapes.destroy(hpi);
+        PP.shapes.destroy(hpi2);
+        PP.shapes.destroy(hpi3);
+        hpi = PP.assets.image.add(s, hpimg, 50, 60, 0,0);
+        hpi.tile_geometry.scroll_factor_x = 0;
+        hpi.tile_geometry.scroll_factor_y = 0;
     }
 
 
@@ -315,6 +350,14 @@ function update(s) {
     }
     if (plat9.geometry.y <= 660) {
         PP.physics.set_velocity_y(plat9, 100);
+    }
+
+
+
+
+
+    if (player.geometry.x > 3300){
+        PP.scenes.start("scene3");
     }
 
 
