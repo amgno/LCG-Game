@@ -17,6 +17,8 @@ function preload(s) {
     img_death_4 = PP.assets.image.load(s, "assets/images/deaths/spriteidk.png");
     img_death_5 = PP.assets.image.load(s, "assets/images/deaths/spritelost.png");
     img_death_6 = PP.assets.image.load(s, "assets/images/deaths/spriteraindeath.png");
+    
+
 };
 function create(s) {
     deathimg = PP.gameState.get_Variable("deathimg");
@@ -36,11 +38,28 @@ function create(s) {
     else if (deathimg === 1) {
         PP.assets.image.add(s, img_death_1, 0,0,0,0)
     }
+
+    hp = 3;
+    hp2 = 3;
 };
 
 function update(s) {
     if (PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
-        PP.scenes.start("scene3");
+            if (deathimg === 1){
+                PP.scenes.start("scene2");
+            }
+            if (deathimg === 2){
+                PP.scenes.start("scene2");
+            }
+            if (deathimg === 6){
+                PP.scenes.start("scene1");
+            }
+            if (deathimg === 3){
+                PP.scenes.start("scene1");
+            }
+            if (deathimg === 5){
+                PP.scenes.start("scene3");
+            }
     }
 };
 

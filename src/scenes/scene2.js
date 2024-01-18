@@ -1,5 +1,5 @@
 // sistemare bug quando sto su nuvole che vanno y+
-//sistemare pioggia
+// sistemare pioggia
 
 
 
@@ -94,7 +94,6 @@ function collision_platform(s, player, platform) {
         // }
     }
 }
-
 
 
 function create(s) {
@@ -215,7 +214,6 @@ function update(s) {
     txt_text.tile_geometry.scroll_factor_x = 0;
     txt_text.tile_geometry.scroll_factor_y = 0;
 
-    console.log(hp2);
     if (hp2 === 0) {
         if (diedfromegg) {
             deathhandler(s, 1);

@@ -1,5 +1,7 @@
 //aggiungere punti hp +
 // sistemare colore
+//allargare generazione rain
+
 
 let img_background;
 let player;
@@ -13,6 +15,7 @@ let deathimg;
 
 
 let testcamera;
+
 
 
 
@@ -32,6 +35,7 @@ function preload(s) {
     vecchia = PP.assets.image.load(s, "assets/images/vecchia.png")
     preload_mushrooms(s);
     preload_rain(s);
+
 };
 
 
@@ -47,10 +51,10 @@ function create(s) {
     background.tile_geometry.flip_y = 1;
 
     // background = PP.assets.image.add(s, img_background, 0 , 0, 0, 0);
-    player = PP.assets.sprite.add(s, ss_player, 390, 600, 0.5, 1);
+    player = PP.assets.sprite.add(s, ss_player, 390, 640, 0.5, 1);
 
 
-    floor = PP.shapes.rectangle_add(s, 1040, 640, 3080, 1, "0x000000", 0);
+    floor = PP.shapes.rectangle_add(s, 1040, 639, 3080, 1, "0x000000", 0);
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
     PP.physics.add(s, floor, PP.physics.type.STATIC);
 
@@ -180,8 +184,6 @@ function update(s) {
 
 
 function destroy(s) {
-
-
 };
 
 

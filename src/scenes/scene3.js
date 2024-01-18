@@ -60,6 +60,7 @@ let key3;
 
 
 
+
 function collision(s, player, platform){
     if (player.geometry.y <= platform.geometry.y) {
         player.is_on_platform = true;
@@ -68,11 +69,12 @@ function collision(s, player, platform){
 
 function preload(s){
     ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 82.5, 165);
-    img_background = PP.assets.image.load(s, "assets/images/background3.png");
+    img_background = PP.assets.image.load(s, "assets/images/level3bg.png");
     kimage = PP.assets.image.load(s, "assets/images/key.png")
 }
 function create(s){
-    player = PP.assets.sprite.add(s, ss_player, 100, 645, 0.5, 1);
+    background = PP.assets.image.add(s, img_background, -640, -858, 0, 0);
+    player = PP.assets.sprite.add(s, ss_player, 100, 644, 0.5, 1);
     key1 = PP.assets.image.add(s, kimage, 4682, 1350, 0,0) //ok
     key2 = PP.assets.image.add(s, kimage, 3586, -606, 0,0)
     key3 = PP.assets.image.add(s, kimage, 400, 200, 0,0)
@@ -80,40 +82,40 @@ function create(s){
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
     // PP.shapes.rectangle_add(s, 100,200 ,100,220, "0x000000", 1)
 
-    floor = PP.shapes.rectangle_add(s, 232, 722, 1277, 156, "0x000000", 1);
+    floor = PP.shapes.rectangle_add(s, 232, 722, 1277, 156, "0x000000", 0);
 
     PP.camera.start_follow(s, player,0,250);
     PP.physics.add(s, floor, PP.physics.type.STATIC);
     PP.physics.add_collider_f(s, player, floor, collision);
 
-    tubo1 = PP.shapes.rectangle_add(s, 410, 489, 143.7152, 309.9965, "0x000000", 1);
-    tubo2 = PP.shapes.rectangle_add(s, 990, 991, 239, 693, "0x000000", 1);
-    tubo3 = PP.shapes.rectangle_add(s, 1308, 1032, 395, 85, "0x000000", 1);
-    tubo4 = PP.shapes.rectangle_add(s, 1018, 1425, 1267, 175, "0x000000", 1);
-    tubo5 = PP.shapes.rectangle_add(s, 718, 12, 1283, 234, "0x000000", 1);
-    tubo6 = PP.shapes.rectangle_add(s, 1266, 218, 186, 177, "0x000000", 1);
-    tubo7 = PP.shapes.rectangle_add(s, 1593, 242, 468, 131, "0x000000", 1);
-    tubo8 = PP.shapes.rectangle_add(s, 1891, 61, 126, 1123, "0x000000", 1);
-    tubo9 = PP.shapes.rectangle_add(s, 1455, -402, 744, 195, "0x000000", 1);
-    tubo10 = PP.shapes.rectangle_add(s, 2076, -13, 243, 60, "0x000000", 1);
-    tubo11 = PP.shapes.rectangle_add(s, 2545, 292, 877, 131, "0x000000", 1);
-    tubo12 = PP.shapes.rectangle_add(s, 2586, 872, 1678, 143, "0x000000", 1);
-    tubo13 = PP.shapes.rectangle_add(s, 2965, 599, 335, 124, "0x000000", 1);
-    tubo14 = PP.shapes.rectangle_add(s, 3279, -27, 292, 1656, "0x000000", 1);
-    tubo15 = PP.shapes.rectangle_add(s, 3606, 599, 361, 124, "0x000000", 1);
-    tubo16 = PP.shapes.rectangle_add(s, 2731, -234, 803, 179, "0x000000", 1);
-    tubo17 = PP.shapes.rectangle_add(s, 3816, -431, 782, 110, "0x000000", 1);
-    tubo18 = PP.shapes.rectangle_add(s, 4289, -534, 163, 315, "0x000000", 1);
-    tubo19 = PP.shapes.rectangle_add(s, 2822, 1255, 1988, 164, "0x000000", 1);
-    tubo20 = PP.shapes.rectangle_add(s, 3650, 1486, 332, 297, "0x000000", 1);
-    tubo21 = PP.shapes.rectangle_add(s, 4342, 1574, 1051, 122, "0x000000", 1);
-    tubo22 = PP.shapes.rectangle_add(s, 4526, 1100, 110, 310, "0x000000", 1);
-    tubo23 = PP.shapes.rectangle_add(s, 4217, 887, 1209, 114, "0x000000", 1);
-    tubo24 = PP.shapes.rectangle_add(s, 4941, 691, 238, 505, "0x000000", 1);
-    tubo25 = PP.shapes.rectangle_add(s, 4547, 307, 1026, 262, "0x000000", 1);
-    tubo26 = PP.shapes.rectangle_add(s, 5360, -179, 1556, 117, "0x000000", 1);
-    tubo27 = PP.shapes.rectangle_add(s, 5481, -407, 400, 337, "0x000000", 1);
-    tubo28 = PP.shapes.rectangle_add(s, 5849, -514, 336, 121, "0x000000", 1);
+    tubo1 = PP.shapes.rectangle_add(s, 410, 489, 143.7152, 309.9965, "0x000000", 0);
+    tubo2 = PP.shapes.rectangle_add(s, 990, 991, 239, 693, "0x000000", 0);
+    tubo3 = PP.shapes.rectangle_add(s, 1308, 1032, 395, 85, "0x000000", 0);
+    tubo4 = PP.shapes.rectangle_add(s, 1018, 1425, 1267, 175, "0x000000", 0);
+    tubo5 = PP.shapes.rectangle_add(s, 718, 12, 1283, 234, "0x000000", 0);
+    tubo6 = PP.shapes.rectangle_add(s, 1266, 218, 186, 177, "0x000000", 0);
+    tubo7 = PP.shapes.rectangle_add(s, 1593, 242, 468, 131, "0x000000", 0);
+    tubo8 = PP.shapes.rectangle_add(s, 1891, 61, 126, 1123, "0x000000", 0);
+    tubo9 = PP.shapes.rectangle_add(s, 1455, -402, 744, 195, "0x000000", 0);
+    tubo10 = PP.shapes.rectangle_add(s, 2076, -13, 243, 60, "0x000000", 0);
+    tubo11 = PP.shapes.rectangle_add(s, 2545, 292, 877, 131, "0x000000", 0);
+    tubo12 = PP.shapes.rectangle_add(s, 2586, 872, 1678, 143, "0x000000", 0);
+    tubo13 = PP.shapes.rectangle_add(s, 2965, 599, 335, 124, "0x000000", 0);
+    tubo14 = PP.shapes.rectangle_add(s, 3279, -27, 292, 1656, "0x000000", 0);
+    tubo15 = PP.shapes.rectangle_add(s, 3606, 599, 361, 124, "0x000000", 0);
+    tubo16 = PP.shapes.rectangle_add(s, 2731, -234, 803, 179, "0x000000", 0);
+    tubo17 = PP.shapes.rectangle_add(s, 3816, -431, 782, 110, "0x000000", 0);
+    tubo18 = PP.shapes.rectangle_add(s, 4289, -534, 163, 315, "0x000000", 0);
+    tubo19 = PP.shapes.rectangle_add(s, 2822, 1255, 1988, 164, "0x000000", 0);
+    tubo20 = PP.shapes.rectangle_add(s, 3650, 1486, 332, 297, "0x000000", 0);
+    tubo21 = PP.shapes.rectangle_add(s, 4342, 1574, 1051, 122, "0x000000", 0);
+    tubo22 = PP.shapes.rectangle_add(s, 4526, 1100, 110, 310, "0x000000", 0);
+    tubo23 = PP.shapes.rectangle_add(s, 4217, 887, 1209, 114, "0x000000", 0);
+    tubo24 = PP.shapes.rectangle_add(s, 4941, 691, 238, 505, "0x000000", 0);
+    tubo25 = PP.shapes.rectangle_add(s, 4547, 307, 1026, 262, "0x000000", 0);
+    tubo26 = PP.shapes.rectangle_add(s, 5360, -179, 1556, 117, "0x000000", 0);
+    tubo27 = PP.shapes.rectangle_add(s, 5481, -407, 400, 337, "0x000000", 0);
+    tubo28 = PP.shapes.rectangle_add(s, 5849, -514, 336, 121, "0x000000", 0);
 
 
 

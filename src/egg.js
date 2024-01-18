@@ -28,9 +28,9 @@ function create_egg(s, player){
     // Generate a raindrop every 100 milliseconds
     setInterval(function () {
         generateEgg(s, 1);
-        PP.physics.set_velocity_x(egg, -800);
+        PP.physics.set_velocity_x(egg, -700);
 
-    }, 1000);
+    }, 2000);
 }
 
 

@@ -52,19 +52,19 @@ function manage_player_update(s, player) {
 
 
     if (PP.interactive.kb.is_key_up(s, PP.key_codes.SPACE)) {
-        if(testfallback){
-        PP.physics.set_velocity_y(player, +player_jump / 1.5);
-        testfallback = false;
+        if (testfallback) {
+            PP.physics.set_velocity_y(player, +player_jump / 1.5);
+            testfallback = false;
         }
     }
 
 
 
-    if (PP.physics.get_velocity_y(player) < 0) {
+    if (PP.physics.get_velocity_y(player) < 0 && PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
         next_anim = "jump_up";
     }
 
-    if (PP.physics.get_velocity_y(player) > 0) {
+    if (PP.physics.get_velocity_y(player) > 300) {
         player.is_on_platform = false;
         next_anim = "jump_down"
     }

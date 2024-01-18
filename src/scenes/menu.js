@@ -1,3 +1,6 @@
+//sistemare hover menu colore. --
+
+
 let menubackground;
 let txt;
 let txt2;
@@ -84,13 +87,17 @@ function update(s) {
     };
 
     function test3(s) {
-        PP.scenes.start("scene3")
+        PP.scenes.start("scene1")
         PP.scenes.stop("menu");
     };
+
 
     PP.interactive.mouse.add(txt, "pointerdown", test);
     PP.interactive.mouse.add(txt2, "pointerdown", test2);
     PP.interactive.mouse.add(txt3, "pointerdown", test3);
+
+
+    //hover
 
 
 
