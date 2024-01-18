@@ -17,10 +17,10 @@ function manage_player_update(s, player) {
     let next_anim = curr_anim;
 
 
-    if (PP.interactive.kb.is_key_down(s, PP.key_codes.D)) {
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.D) || PP.interactive.kb.is_key_down(s, PP.key_codes.RIGHT)) {
         PP.physics.set_velocity_x(player, player_speed);
         next_anim = "run";
-    } else if (PP.interactive.kb.is_key_down(s, PP.key_codes.A)) {
+    } else if (PP.interactive.kb.is_key_down(s, PP.key_codes.A) || PP.interactive.kb.is_key_down(s, PP.key_codes.LEFT)) {
         PP.physics.set_velocity_x(player, -player_speed);
         next_anim = "run";
         player.geometry.flip_x = true;
@@ -41,7 +41,7 @@ function manage_player_update(s, player) {
     //         player.is_on_platform = false;
 
     // }
-    if (PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE) || PP.interactive.kb.is_key_down(s, PP.key_codes.UP)) {
         if (player.is_on_platform) {
             PP.physics.set_acceleration_y(player, 0.1)
             PP.physics.set_velocity_y(player, -player_jump);
@@ -51,7 +51,7 @@ function manage_player_update(s, player) {
     }
 
 
-    if (PP.interactive.kb.is_key_up(s, PP.key_codes.SPACE)) {
+    if (PP.interactive.kb.is_key_up(s, PP.key_codes.SPACE) || PP.interactive.kb.is_key_down(s, PP.key_codes.UP)) {
         if (testfallback) {
             PP.physics.set_velocity_y(player, +player_jump / 1.5);
             testfallback = false;
@@ -60,8 +60,10 @@ function manage_player_update(s, player) {
 
 
 
-    if (PP.physics.get_velocity_y(player) < 0 && PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
-        next_anim = "jump_up";
+    if (PP.physics.get_velocity_y(player) < 0) {
+        if (PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE) || PP.interactive.kb.is_key_down(s, PP.key_codes.UP)) {
+            next_anim = "jump_up";
+        }
     }
 
     if (PP.physics.get_velocity_y(player) > 300) {
