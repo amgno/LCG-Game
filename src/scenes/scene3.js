@@ -11,7 +11,7 @@ let background;
 let isnoclip = false;
 
 
-
+let vecchia;
 let numkey;
 
 
@@ -75,6 +75,7 @@ function preload(s){
     ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 82.5, 165);
     img_background = PP.assets.image.load(s, "assets/images/level3bg.png");
     kimage = PP.assets.image.load(s, "assets/images/key.png");
+    vecchia = PP.assets.image.load(s, "assets/images/vecchia3.png")
 
 }
 function create(s){
@@ -196,7 +197,7 @@ function create(s){
     PP.physics.add(s, key3, PP.physics.type.STATIC);
     PP.physics.add_collider_f(s, player, key3, collectkey);
 
-
+    PP.assets.image.add(s, vecchia, -260, 465, 0,0);
 }
 
 
@@ -222,7 +223,6 @@ function update(s){
         key1 = PP.assets.image.add(s, kimage, 50, 60, 0,0) //ok
         key1.tile_geometry.scroll_factor_x = 0;
         key1.tile_geometry.scroll_factor_y = 0;
-        numkey = 3;
     }
     if (numkey === 2){
         key2 = PP.assets.image.add(s, kimage, 120, 60, 0,0) //ok
