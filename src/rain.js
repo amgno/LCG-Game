@@ -3,6 +3,8 @@ let hp = 3;
 let img_rain_1
 
 let diedfromrain = 0;
+let velrain;
+let rain;
 
 function preload_rain(s){
     img_rain_1 = PP.assets.image.load(s, "assets/images/rain.png")
@@ -34,9 +36,11 @@ function create_rain(s, player){
     function createRaindrop(s) {
         let x = Math.floor(Math.random() * (0 - 4000 + 1)) + 4000;
         let y = Math.floor(Math.random() * (1800 - 2000 + 1)) + 1100;
-        let rain = PP.assets.image.add(s, img_rain_1, x, -y*5, 0, 0, 0);
+        rain = PP.assets.image.add(s, img_rain_1, x, -y*5, 0, 0, 0);
         PP.physics.add(s, rain, PP.physics.type.DYNAMIC);
-        PP.physics.add_collider_f(s, player, rain, deathrain);
+        PP.physics.add_collider_f(s, player, rain, deathrain)
+        PP.physics.set_allow_gravity(rain, false);
+        
     }
     
     function generateRaindrops(s, count) {
@@ -48,5 +52,8 @@ function create_rain(s, player){
     // Generate a raindrop every 100 milliseconds
     setInterval(function () {
         generateRaindrops(s, 1);
+        PP.physics.set_acceleration_y(rain, 100)
     }, 700);
 }
+
+

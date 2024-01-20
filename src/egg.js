@@ -4,7 +4,7 @@ let diedfromegg = 0;
 let hp2 = 3;
 
 function preload_egg(s){
-    img_egg = PP.assets.image.load(s, "assets/images/rain.png")
+    img_egg = PP.assets.image.load(s, "assets/images/egg.png")
     // img_mushroom_2 = PP.assets.image.load(s, "assets/images/mushroom_2.png")
 }
 

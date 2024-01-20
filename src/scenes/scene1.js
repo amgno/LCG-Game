@@ -1,8 +1,3 @@
-//aggiungere punti hp +
-// sistemare colore
-//allargare generazione rain
-
-
 let img_background;
 let player;
 let ss_player;
@@ -22,7 +17,15 @@ let hpi3;
 let testcamera;
 
 
-
+let fagioliimg;
+let fagioli;
+let fagioli2;
+let fagioli3;
+let fagioli4;
+let fagioli5;
+let text_inst;
+let passedtime=0;
+let rain;
 
 function collision(s, player, platform){
     // console.log("a")
@@ -33,6 +36,7 @@ function collision(s, player, platform){
 
 
 function preload(s) {
+    fagioliimg = PP.assets.image.load(s, "assets/images/fagioli.png")
     img_background = PP.assets.image.load(s, "assets/images/background.png");
     // ss_player = PP.assets.sprite.load_spritesheet(s, "assets/", 223, 190);
     ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 82.5, 165);
@@ -40,14 +44,15 @@ function preload(s) {
     vecchia = PP.assets.image.load(s, "assets/images/vecchia.png")
     preload_mushrooms(s);
     preload_rain(s);
-
     hpimg = PP.assets.image.load(s, "assets/images/cuoreimg.png")
+
 
 };
 
 
 
 function create(s) {
+    
     PP.gameState.set_variable("vita", 0);
     // background = PP.assets.tilesprite.add(s, img_background, 0, -4520, 2280, 5300, 0, 0);
     background = PP.assets.image.add(s, img_background, 0, -4540, 0, 0);
@@ -63,6 +68,9 @@ function create(s) {
     hpi2.tile_geometry.scroll_factor_y = 0;
     hpi3.tile_geometry.scroll_factor_x = 0;
     hpi3.tile_geometry.scroll_factor_y = 0;
+
+
+
 
     
     background.tile_geometry.flip_y = 1;
@@ -94,11 +102,32 @@ function create(s) {
     PP.physics.add(s, colliderl, PP.physics.type.STATIC);
     PP.physics.add_collider(s, player, colliderl);
 
-    let colliderr = PP.shapes.rectangle_add(s, 2520, 300, 1, 600, "0xABCDEF", 1)
+    let colliderr = PP.shapes.rectangle_add(s, 2520, 300, 1, 600, "0xABCDEF", 0)
     PP.physics.add(s, colliderr, PP.physics.type.STATIC);
     PP.physics.add_collider(s, player, colliderr);
 
 
+    fagioli = PP.assets.image.add(s, fagioliimg, 2100, -617, 0, 0);
+    fagioli2 = PP.assets.image.add(s, fagioliimg, 3557, -850, 0, 0);
+    fagioli3 = PP.assets.image.add(s, fagioliimg, 1607.75, -3200, 0, 0);
+    fagioli4 = PP.assets.image.add(s, fagioliimg, 738.5, -3465, 0, 0);
+    fagioli5 = PP.assets.image.add(s, fagioliimg, 2697.25, -3550, 0, 0);
+
+
+    PP.physics.add(s, fagioli, PP.physics.type.STATIC);
+    PP.physics.add_collider_f(s, player, fagioli, regenhp);
+
+    PP.physics.add(s, fagioli2, PP.physics.type.STATIC);
+    PP.physics.add_collider_f(s, player, fagioli2, regenhp);
+
+    PP.physics.add(s, fagioli3, PP.physics.type.STATIC);
+    PP.physics.add_collider_f(s, player, fagioli3, regenhp);
+
+    PP.physics.add(s, fagioli4, PP.physics.type.STATIC);
+    PP.physics.add_collider_f(s, player, fagioli4, regenhp);
+
+    PP.physics.add(s, fagioli5, PP.physics.type.STATIC);
+    PP.physics.add_collider_f(s, player, fagioli5, regenhp);
 
 
     // configure_player_animation(s, player);v
@@ -109,7 +138,18 @@ function deathhandler(s, num){
     PP.scenes.start("death");
 }
 
+
+function regenhp(s, player, fagiolis){
+    // console.log("a")
+    PP.shapes.destroy(fagiolis);
+    hp = 3;
+}
+
 function update(s) {
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.J)){
+        player.geometry.x = 2000.5;
+        player.geometry.y = -617;
+    }
 
     if (hp === 0){
         if(diedfromrain){
@@ -207,6 +247,13 @@ function update(s) {
 
     if (PP.interactive.kb.is_key_down(s, PP.key_codes.K)) {
         PP.scenes.start("scene3");
+    }
+
+
+
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.Y)){
+        console.log("x"+ " "+player.geometry.x);
+        console.log("y"+ " "+player.geometry.y);
     }
 
 };

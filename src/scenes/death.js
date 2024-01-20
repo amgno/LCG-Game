@@ -6,11 +6,17 @@ let img_death_5;
 let img_death_6;
 let deathimg;
 
+let endfirst;
+let endsecond;
+
 
 // console.log(deathimg);
 
 function preload(s) {
 
+
+    endfirst = PP.assets.image.load(s, "assets/images/end/end1.png");
+    endsecond = PP.assets.image.load(s, "assets/images/end/end2.png");
     img_death_1 = PP.assets.image.load(s, "assets/images/deaths/spriteeggdeath.png");
     img_death_2 = PP.assets.image.load(s, "assets/images/deaths/spritefallcloud.png");
     img_death_3 = PP.assets.image.load(s, "assets/images/deaths/spritefalldmg.png");
@@ -37,6 +43,8 @@ function create(s) {
     }
     else if (deathimg === 1) {
         PP.assets.image.add(s, img_death_1, 0,0,0,0)
+    } else if(deathimg === 20){
+        PP.assets.image.add(s, endfirst, 0,0,0,0)
     }
 
     hp = 3;
@@ -59,6 +67,14 @@ function update(s) {
             }
             if (deathimg === 5){
                 PP.scenes.start("scene3");
+            }
+            if (deathimg === 20){
+
+                PP.assets.image.add(s, endsecond, 0,0,0,0);
+                setTimeout(function() {
+                    PP.scenes.start("menu");
+                    expandAndContract();
+                }, 10000);
             }
     }
 };

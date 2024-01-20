@@ -12,6 +12,9 @@ let isnoclip = false;
 
 
 
+let numkey;
+
+
 
 
 let tubo1;
@@ -61,6 +64,7 @@ let key3;
 
 
 
+
 function collision(s, player, platform){
     if (player.geometry.y <= platform.geometry.y) {
         player.is_on_platform = true;
@@ -70,10 +74,12 @@ function collision(s, player, platform){
 function preload(s){
     ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 82.5, 165);
     img_background = PP.assets.image.load(s, "assets/images/level3bg.png");
-    kimage = PP.assets.image.load(s, "assets/images/key.png")
+    kimage = PP.assets.image.load(s, "assets/images/key.png");
+
 }
 function create(s){
-    background = PP.assets.image.add(s, img_background, -640, -858, 0, 0);
+    numkey = 0;
+    background = PP.assets.image.add(s, img_background, -420, -858, 0, 0);
     player = PP.assets.sprite.add(s, ss_player, 100, 644, 0.5, 1);
     key1 = PP.assets.image.add(s, kimage, 4682, 1350, 0,0) //ok
     key2 = PP.assets.image.add(s, kimage, 3586, -606, 0,0)
@@ -179,6 +185,24 @@ function create(s){
     PP.physics.add_collider_f(s, player, tubo28, collision);
 
 
+
+
+    PP.physics.add(s, key1, PP.physics.type.STATIC);
+    PP.physics.add_collider_f(s, player, key1, collectkey);
+
+    PP.physics.add(s, key2, PP.physics.type.STATIC);
+    PP.physics.add_collider_f(s, player, key2, collectkey);
+
+    PP.physics.add(s, key3, PP.physics.type.STATIC);
+    PP.physics.add_collider_f(s, player, key3, collectkey);
+
+
+}
+
+
+function collectkey(s, player, keys){
+    PP.shapes.destroy(keys);
+    numkey = numkey + 1;
 }
 
 
@@ -194,6 +218,23 @@ function update(s){
     manage_player_update(s, player);
 
 
+    if (numkey === 1){
+        key1 = PP.assets.image.add(s, kimage, 50, 60, 0,0) //ok
+        key1.tile_geometry.scroll_factor_x = 0;
+        key1.tile_geometry.scroll_factor_y = 0;
+        numkey = 3;
+    }
+    if (numkey === 2){
+        key2 = PP.assets.image.add(s, kimage, 120, 60, 0,0) //ok
+        key2.tile_geometry.scroll_factor_x = 0;
+        key2.tile_geometry.scroll_factor_y = 0;
+    }
+    if (numkey === 3){
+        key3 = PP.assets.image.add(s, kimage, 190, 60, 0,0) //ok
+        key3.tile_geometry.scroll_factor_x = 0;
+        key3.tile_geometry.scroll_factor_y = 0;
+    }
+
     if (PP.interactive.kb.is_key_down(s, PP.key_codes.O)) {
         console.log(player.geometry.x + " " + player.geometry.y)
     }
@@ -207,6 +248,12 @@ function update(s){
         hp = 0;
         diedfromlost = 1;
         deathhandler(s, 5)
+    }
+
+
+
+    if(numkey === 3){
+        deathhandler(s, 20);
     }
 
 

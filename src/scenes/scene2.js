@@ -11,6 +11,9 @@ let floor;
 let background;
 let isnoclip = false;
 let diedfromcloud = 0;
+let vecchia;
+
+let exit2;
 
 
 let hpimg;
@@ -62,7 +65,9 @@ let img_plat15;
 function preload(s) {
     ss_player = PP.assets.sprite.load_spritesheet(s, "assets/images/sprite.png", 82.5, 165);
     img_background = PP.assets.image.load(s, "assets/images/backgrounddim3.png");
+    exit2 = PP.assets.image.load(s, "assets/images/exitlevel2.png");
     preload_egg(s);
+    
 
 
     img_plat1 = PP.assets.image.load(s, "assets/images/plat/plat1.png");
@@ -83,6 +88,8 @@ function preload(s) {
 
 
     hpimg = PP.assets.image.load(s, "assets/images/cuoreimg.png")
+    vecchia = PP.assets.image.load(s, "assets/images/vecchia2.png")
+
 }
 
 
@@ -110,7 +117,7 @@ function create(s) {
 
     // PP.physics.add_collider(s, player, floor);
 
-
+    PP.assets.image.add(s, vecchia, -250, 100, 0,0);
     plat1 = PP.assets.image.add(s, img_plat1, -840, 279, 0, 0);
     plat2 = PP.assets.image.add(s, img_plat2, 251, 471, 0, 0);
     plat3 = PP.assets.image.add(s, img_plat3, 606, 293, 0, 0);
@@ -204,10 +211,13 @@ function create(s) {
     PP.physics.set_immovable(plat7, true);
     PP.physics.set_immovable(plat8, true);
     PP.physics.set_immovable(plat9, true);
+    PP.physics.set_immovable(plat14, true);
 
 
 
     lastPlatformPositionY = player.geometry.y;
+
+    PP.assets.image.add(s, exit2, 4200, 280, 1,1)
 
 }
 
@@ -222,6 +232,10 @@ function deathhandler(s, num) {
 function update(s) {
 
     //hud
+    if (player.geometry.x > 2500){
+        PP.shapes.destroy(egg);
+    }
+
 
     if (hp2 === 0) {
         if (diedfromegg) {
@@ -356,7 +370,7 @@ function update(s) {
 
 
 
-    if (player.geometry.x > 3300){
+    if (player.geometry.x > 3500){
         PP.scenes.start("scene3");
     }
 
