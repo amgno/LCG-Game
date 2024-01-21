@@ -64,7 +64,6 @@ let key3;
 
 
 
-
 function collision(s, player, platform){
     if (player.geometry.y <= platform.geometry.y) {
         player.is_on_platform = true;

@@ -13,9 +13,9 @@ function preload(s) {
 }
 function create(s) {
     PP.assets.image.add(s, menubackground, 0, 0, 0, 0);
-    txt = PP.shapes.text_styled_add(s, 110, 40, "STORIA", 60, "Helvetica Neue Condensed Black", "normal", "0xFFFFFF", null);
-    txt2 = PP.shapes.text_styled_add(s, 114, 100, "CREDITI", 60, "Helvetica Neue Condensed Black", "normal", "0xFFFFFF", null);
-    txt3 = PP.shapes.text_styled_add(s, 93, 160, "GIOCA", 60, "Helvetica Neue Condensed Black", "normal", "0xFFFFFF", null);
+    txt = PP.shapes.text_styled_add(s, 110, 40, "STORIA", 60, "Hbc", "normal", "0xFFFFFF", null);
+    txt2 = PP.shapes.text_styled_add(s, 114, 100, "CREDITI", 60, "Hbc", "normal", "0xFFFFFF", null);
+    txt3 = PP.shapes.text_styled_add(s, 93, 160, "GIOCA", 60, "Hbc", "normal", "0xFFFFFF", null);
 
 }
 
@@ -24,19 +24,19 @@ function create(s) {
 //     console.log(selection);
 //     if (selection = 0){
 //         PP.shapes.destroy(txt);
-//         txt = PP.shapes.text_styled_add(s, 110, 40, "STORIA", 60, "Helvetica Neue Condensed Black", "normal", "0x000000", null);
+//         txt = PP.shapes.text_styled_add(s, 110, 40, "STORIA", 60, "Hbc", "normal", "0x000000", null);
 //         selection = selection+1;
 //     } else if (selection = 1){
 //         PP.shapes.destroy(txt);
-//         txt = PP.shapes.text_styled_add(s, 110, 40, "STORIA", 60, "Helvetica Neue Condensed Black", "normal", "0xFFFFFF", null);
+//         txt = PP.shapes.text_styled_add(s, 110, 40, "STORIA", 60, "Hbc", "normal", "0xFFFFFF", null);
 //         PP.shapes.destroy(txt2);
-//         txt2 = PP.shapes.text_styled_add(s,114, 100,  "CREDITI", 60, "Helvetica Neue Condensed Black", "normal", "0x000000", null);
+//         txt2 = PP.shapes.text_styled_add(s,114, 100,  "CREDITI", 60, "Hbc", "normal", "0x000000", null);
 //         selection = selection +1;
 //     } else {
 //         PP.shapes.destroy(txt2);
-//         txt2 = PP.shapes.text_styled_add(s, 110, 40, "CREDITI", 60, "Helvetica Neue Condensed Black", "normal", "0xFFFFFF", null);
+//         txt2 = PP.shapes.text_styled_add(s, 110, 40, "CREDITI", 60, "Hbc", "normal", "0xFFFFFF", null);
 //         PP.shapes.destroy(txt3);
-//         txt3 = PP.shapes.text_styled_add(s,93, 160,  "GIOCA", 60, "Helvetica Neue Condensed Black", "normal", "0x000000", null);
+//         txt3 = PP.shapes.text_styled_add(s,93, 160,  "GIOCA", 60, "Hbc", "normal", "0x000000", null);
 //         selection = 0;
 //     }
 // }
@@ -47,23 +47,23 @@ function select(s) {
     // console.log(selection);
     if (selection === 0) {
         PP.shapes.destroy(txt);
-        txt = PP.shapes.text_styled_add(s, 110, 40, "STORIA", 60, "Helvetica Neue Condensed Black", "normal", "0x000000", null);
+        txt = PP.shapes.text_styled_add(s, 110, 40, "STORIA", 60, "Hbc", "normal", "0x000000", null);
         PP.shapes.destroy(txt3);
-        txt3 = PP.shapes.text_styled_add(s, 93, 160, "GIOCA", 60, "Helvetica Neue Condensed Black", "normal", "0xFFFFFF", null);
+        txt3 = PP.shapes.text_styled_add(s, 93, 160, "GIOCA", 60, "Hbc", "normal", "0xFFFFFF", null);
         selection = selection + 1;
         selectionpress = 1;
     } else if (selection === 1) {
         PP.shapes.destroy(txt);
-        txt = PP.shapes.text_styled_add(s, 110, 40, "STORIA", 60, "Helvetica Neue Condensed Black", "normal", "0xFFFFFF", null);
+        txt = PP.shapes.text_styled_add(s, 110, 40, "STORIA", 60, "Hbc", "normal", "0xFFFFFF", null);
         PP.shapes.destroy(txt2);
-        txt2 = PP.shapes.text_styled_add(s, 114, 100, "CREDITI", 60, "Helvetica Neue Condensed Black", "normal", "0x000000", null);
+        txt2 = PP.shapes.text_styled_add(s, 114, 100, "CREDITI", 60, "Hbc", "normal", "0x000000", null);
         selection = selection + 1;
         selectionpress = 2;
     } else {
         PP.shapes.destroy(txt2);
-        txt2 = PP.shapes.text_styled_add(s, 114, 100, "CREDITI", 60, "Helvetica Neue Condensed Black", "normal", "0xFFFFFF", null);
+        txt2 = PP.shapes.text_styled_add(s, 114, 100, "CREDITI", 60, "Hbc", "normal", "0xFFFFFF", null);
         PP.shapes.destroy(txt3);
-        txt3 = PP.shapes.text_styled_add(s, 93, 160, "GIOCA", 60, "Helvetica Neue Condensed Black", "normal", "0x000000", null);
+        txt3 = PP.shapes.text_styled_add(s, 93, 160, "GIOCA", 60, "Hbc", "normal", "0x000000", null);
         selection = 0;
         selectionpress = 3;
     }
@@ -82,7 +82,7 @@ function update(s) {
     };
 
     function test2(s) {
-        PP.scenes.start("storia")
+        PP.scenes.start("crediti")
         PP.scenes.stop("menu");
     };
 
@@ -116,6 +116,7 @@ function update(s) {
             PP.scenes.start("storia");
         } else if (selectionpress === 2) {
             selection = 0;
+            PP.scenes.start("crediti");
         } else {
             selection = 0;
             PP.scenes.start("scene1");
